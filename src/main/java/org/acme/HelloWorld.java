@@ -45,7 +45,6 @@ public class HelloWorld {
 
     public void start() throws IOException, XSLTransformException, URISyntaxException {
 
-	    Compiler c = Daffodil.compiler();
         try(FileOutputStream outputStream = new FileOutputStream("test.txt")) {
             URL schemaFileURL = HelloWorld.class.getResource("/helloWorld.dfdl.xsd");
             URL dataFileURL = HelloWorld.class.getResource("/helloWorld.dat");
@@ -54,10 +53,11 @@ public class HelloWorld {
             //
             // First compile the DFDL Schema
             //
+	    Compiler c = Daffodil.compiler();
             ProcessorFactory pf = c.compileSource(schemaFileURL.toURI());
-	    outputStream.write("XSD compilé\n".getBytes());
+	    outputStream.write("XSD compiled\n".getBytes());
             List<Diagnostic> diags1 = pf.getDiagnostics();
-	    outputStream.write("Diagnostic récupéré\n".getBytes());
+	    outputStream.write("Diagnostic\n".getBytes());
             for(Diagnostic d : diags1) {
                 outputStream.write(d.getSomeMessage().getBytes());
                 outputStream.write("\n".getBytes());
