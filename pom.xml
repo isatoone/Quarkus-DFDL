@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.acme</groupId>
     <artifactId>getting-started</artifactId>
@@ -40,6 +41,10 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-scala</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
             <scope>test</scope>
         </dependency>
@@ -47,30 +52,29 @@
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
-    </dependency>
-    <dependency>
-    <groupId>org.scala-lang</groupId>
-    <artifactId>scala-library</artifactId>
-    <version>2.12.20</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.daffodil/daffodil-japi -->
-<dependency>
-    <groupId>org.apache.daffodil</groupId>
-    <artifactId>daffodil-japi_2.12</artifactId>
-    <version>3.9.0</version>
-    <exclusions>
-    	<exclusion>
-        	<groupId>org.scala-lang</groupId>
-                <artifactId>scala-library</artifactId>
-	</exclusion>
-    </exclusions>
-</dependency>
-
-<dependency>
-  <groupId>jaxen</groupId>
-  <artifactId>jaxen</artifactId>
-  <version>1.2.0</version>
-</dependency>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.daffodil/daffodil-japi -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.12.20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.daffodil</groupId>
+            <artifactId>daffodil-japi_2.12</artifactId>
+            <version>3.10.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>2.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -88,9 +92,9 @@
                             <goal>native-image-agent</goal>
                         </goals>
                     </execution>
-	    </executions>
-	    <configuration>
-		    <jvmArgs>-Xms512m -Xmx4g</jvmArgs>
+                </executions>
+                <configuration>
+                    <jvmArgs>-Xms512m -Xmx4g</jvmArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -123,7 +127,8 @@
                 </executions>
                 <configuration>
                     <systemPropertyVariables>
-                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner
+                        </native.image.path>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
